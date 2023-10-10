@@ -1,9 +1,9 @@
-import express from 'express';
-const router = express.Router();
+// import express from 'express';
+// const router = express.Router();
 
-router.get('/meals', (req, res) => {
-    res.json({
-        "msg":"ok",
-    })
-});
+// router.get('/meals', (req, res) => {
+//     res.json({
+//         "msg":"ok",
+//     })
+// });
 

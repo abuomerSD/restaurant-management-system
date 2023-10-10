@@ -1,5 +1,8 @@
-import express, {Express} from 'express';
-import dotenv from 'dotenv';
+const express = require('express');
+const dotenv = require('dotenv');
+
+// import express, {Express} from 'express';
+// import dotenv from 'dotenv';
 // import mealRouter from './dist/routes/'
 
 dotenv.config();
