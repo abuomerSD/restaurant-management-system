@@ -1,6 +1,8 @@
-import express, {Express} from 'express';
-import dotenv from 'dotenv';
-// import mealRouter from './dist/routes/'
+const express = require('express');
+const dotenv = require('dotenv');
+const mealRouter = require('./routes/mealRoute');
+const middlewares = require('./middleware/middleware')
+const bodyParser = require('body-parser');
 
 dotenv.config();
 
@@ -12,6 +14,16 @@ const port = process.env.port;
 
 // defining the public files path
 app.use(express.static('public'));
+
+// logging middleware for debuging
+app.use(middlewares.logger);
+
+// body parser
+app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+// meals route
+app.use('/meals', mealRouter);
 
 // listening to requests
 app.listen(port, ()=> {

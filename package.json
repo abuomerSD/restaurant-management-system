@@ -1,13 +1,18 @@
 {
   "dependencies": {
+    "@prisma/client": "^5.4.2",
+    "body-parser": "^1.20.2",
     "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
     "express": "^4.18.2"
   },
   "devDependencies": {
     "@types/express": "^4.17.18",
-    "@types/node": "^20.8.3",
+    "@types/node": "^20.8.4",
     "concurrently": "^8.2.1",
     "nodemon": "^3.0.1",
+    "prisma": "^5.4.2",
+    "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
   },
   "name": "restaurent-management-system",
@@ -29,5 +34,6 @@
     "url": "https://github.com/abuomerSD/restaurant-management-system/issues"
   },
   "homepage": "https://github.com/abuomerSD/restaurant-management-system#readme",
-  "description": ""
+  "description": "This is Restaurent Management System",
+  "keywords": []
 }
