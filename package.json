@@ -15,8 +15,10 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
+
+    "compile:sass": "node-sass public/sass/main.scss public/css/style.css",
+
     "test": "echo \"Error: no test specified\" && exit 1",
-    "compile:sass" : "node-sass public/sass/main.scss public/css/style.css -w",
     "build": "npx tsc",
     "start": "nodemon app.js",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon dist/app.js\""
@@ -25,7 +27,7 @@
     "type": "git",
     "url": "git+https://github.com/abuomerSD/restaurant-management-system.git"
   },
-  "author": "Eltayeb Ibrahim && Mohaned Ahmed",
+  "author": "Eltayeb Ibrahim && Mohanad Ahmed",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/abuomerSD/restaurant-management-system/issues"
