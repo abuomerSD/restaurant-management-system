@@ -18,6 +18,9 @@ app.use(express.static('public'));
 // logging middleware for debuging
 app.use(middlewares.logger);
 
+// error handeler
+app.use(middlewares.errorHandler);
+
 // body parser
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());

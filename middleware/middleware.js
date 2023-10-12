@@ -3,4 +3,9 @@ const logger = (req, res, next) => {
     next();
 }
 
-module.exports = { logger }
+const errorHandler = (err, req, res, next) => {
+    console.log(err.message);
+    next();
+}
+
+module.exports = { logger , errorHandler}

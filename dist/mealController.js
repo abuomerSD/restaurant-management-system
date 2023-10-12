@@ -14,20 +14,80 @@ const prisma = new client_1.PrismaClient();
 const addMeal = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const meal = req.body;
     console.log(meal);
-    yield prisma.meal.create({
-        data: meal,
-    });
-    res.json({
-        "status": "Meal added successfully"
-    });
+    try {
+        yield prisma.meal.create({
+            data: meal,
+        });
+        res.json({
+            "status": "Meal added successfully"
+        });
+    }
+    catch (err) {
+        res.status(404).send(err.message);
+    }
 });
 const updateMeal = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const meal = req.body;
     const id = req.params.id;
-    yield prisma.meal.update({
-        where: {
-            id: id,
-        }
-    });
+    try {
+        yield prisma.meal.update({
+            where: {
+                id: id,
+            },
+            data: {
+                name: meal.name,
+                price: meal.price,
+            },
+        });
+        res.json({
+            "msg": "updated successfully",
+        });
+    }
+    catch (err) {
+        res.status(404).send(err.message);
+    }
 });
-module.exports = { addMeal, updateMeal };
+const deleteMeal = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.params.id;
+    try {
+        yield prisma.meal.delete({
+            where: {
+                id: id,
+            }
+        });
+        res.json({
+            'msg': 'meal deleted successfully'
+        });
+    }
+    catch (err) {
+        res.status(404).send(err.message);
+    }
+});
+const getSingleMeal = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.params.id;
+    try {
+        const meal = yield prisma.meal.findUnique({
+            where: {
+                id: id,
+            }
+        });
+        //   res.send(`${meal?.id} - ${meal?.name} - ${meal?.price}`) 
+        if (meal === null) {
+            res.status(404).send('Meal Not Found');
+        }
+        res.json(meal);
+    }
+    catch (err) {
+        res.status(404).send(err.message);
+    }
+});
+const getAllMeals = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const meals = yield prisma.meal.findMany();
+        res.json(meals);
+    }
+    catch (err) {
+        res.send(err.message);
+    }
+});
+module.exports = { addMeal, updateMeal, deleteMeal, getSingleMeal, getAllMeals };
