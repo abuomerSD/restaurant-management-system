@@ -13,7 +13,8 @@ const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
 const addMeal = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const meal = req.body;
-    console.log(meal);
+    let price = Number(meal.price);
+    meal.price = price;
     try {
         yield prisma.meal.create({
             data: meal,
@@ -90,4 +91,7 @@ const getAllMeals = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         res.send(err.message);
     }
 });
-module.exports = { addMeal, updateMeal, deleteMeal, getSingleMeal, getAllMeals };
+const renderAddMeal = (req, res) => {
+    res.render('add-meal');
+};
+module.exports = { addMeal, updateMeal, deleteMeal, getSingleMeal, getAllMeals, renderAddMeal };

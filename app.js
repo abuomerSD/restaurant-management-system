@@ -1,15 +1,8 @@
 const express = require('express');
 const dotenv = require('dotenv');
-<<<<<<< HEAD
 const mealRouter = require('./routes/mealRoute');
 const middlewares = require('./middleware/middleware')
 const bodyParser = require('body-parser');
-=======
-
-// import express, {Express} from 'express';
-// import dotenv from 'dotenv';
-// import mealRouter from './dist/routes/'
->>>>>>> 37a2bc9c9b40f321d0e4a386c6d527870d7e414e
 
 dotenv.config();
 
@@ -18,6 +11,9 @@ const app = express();
 
 // defining the listening port
 const port = process.env.port;
+
+// setting the view engine to EJS
+app.set('view engine', 'ejs');
 
 // defining the public files path
 app.use(express.static('public'));

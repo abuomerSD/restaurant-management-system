@@ -5,7 +5,8 @@ const prisma = new PrismaClient();
 
 const addMeal = async (req: Request, res: Response) => {
     const meal = req.body;
-    console.log(meal);
+    let price = Number(meal.price);
+    meal.price = price;
     try {
         await prisma.meal.create({
             data:meal,
@@ -95,5 +96,9 @@ const getAllMeals =async (req:Request, res: Response) => {
     }
 }
 
+const renderAddMeal = (req: Request, res: Response) => {
+    res.render('add-meal');
+}
 
-module.exports = { addMeal, updateMeal, deleteMeal, getSingleMeal, getAllMeals }
+
+module.exports = { addMeal, updateMeal, deleteMeal, getSingleMeal, getAllMeals, renderAddMeal }
