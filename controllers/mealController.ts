@@ -11,9 +11,7 @@ const addMeal = async (req: Request, res: Response) => {
         await prisma.meal.create({
             data:meal,
         });
-        res.json({
-            "status": "Meal added successfully"
-        })
+        res.redirect('meals');
     }
     catch(err : any){
         res.status(404).send(err.message);
@@ -71,12 +69,12 @@ const getSingleMeal =async (req: Request, res: Response) => {
         }
       })
 
-    //   res.send(`${meal?.id} - ${meal?.name} - ${meal?.price}`) 
     if(meal === null)
     {
         res.status(404).send('Meal Not Found');
     }
-    res.json(meal);
+    // res.json(meal);
+    res.render('../views/meal-details.ejs', {title:'Meal Details', meal})
     }
     catch(err: any)
     {
@@ -88,7 +86,8 @@ const getAllMeals =async (req:Request, res: Response) => {
     try
     {
        const meals = await prisma.meal.findMany();
-       res.json(meals);
+    //    res.json(meals);
+    res.render('../views/meals-list.ejs', {title: 'Meals List', dollarSign:'$', meals})
     }
     catch(err: any)
     {
@@ -97,8 +96,30 @@ const getAllMeals =async (req:Request, res: Response) => {
 }
 
 const renderAddMeal = (req: Request, res: Response) => {
-    res.render('add-meal');
+    try{
+        res.render('add-meal', {title:'Add Meal'});
+    }
+    catch(err: any){
+        res.send(err.message);
+    }
+}
+
+const renderMealsList = (req: Request, res: Response) => {
+    try
+    {
+        res.render('meals-list')
+    }
+    catch(err: any)
+    {
+        res.send(err.message);
+    }
 }
 
 
-module.exports = { addMeal, updateMeal, deleteMeal, getSingleMeal, getAllMeals, renderAddMeal }
+module.exports = { addMeal,
+     updateMeal,
+      deleteMeal,
+       getSingleMeal,
+        getAllMeals,
+         renderAddMeal,
+          renderMealsList }

@@ -6,6 +6,8 @@ const controller = require('../dist/mealController');
 
 router.get('/add-meal', controller.renderAddMeal)
 
+router.get('/meals', controller.renderMealsList)
+
 router.get('/', controller.getAllMeals);
 
 router.post('/', controller.addMeal);

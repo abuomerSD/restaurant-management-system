@@ -19,9 +19,7 @@ const addMeal = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         yield prisma.meal.create({
             data: meal,
         });
-        res.json({
-            "status": "Meal added successfully"
-        });
+        res.redirect('meals');
     }
     catch (err) {
         res.status(404).send(err.message);
@@ -72,11 +70,11 @@ const getSingleMeal = (req, res) => __awaiter(void 0, void 0, void 0, function* 
                 id: id,
             }
         });
-        //   res.send(`${meal?.id} - ${meal?.name} - ${meal?.price}`) 
         if (meal === null) {
             res.status(404).send('Meal Not Found');
         }
-        res.json(meal);
+        // res.json(meal);
+        res.render('../views/meal-details.ejs', { title: 'Meal Details', meal });
     }
     catch (err) {
         res.status(404).send(err.message);
@@ -85,13 +83,33 @@ const getSingleMeal = (req, res) => __awaiter(void 0, void 0, void 0, function* 
 const getAllMeals = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const meals = yield prisma.meal.findMany();
-        res.json(meals);
+        //    res.json(meals);
+        res.render('../views/meals-list.ejs', { title: 'Meals List', dollarSign: '$', meals });
     }
     catch (err) {
         res.send(err.message);
     }
 });
 const renderAddMeal = (req, res) => {
-    res.render('add-meal');
+    try {
+        res.render('add-meal', { title: 'Add Meal' });
+    }
+    catch (err) {
+        res.send(err.message);
+    }
 };
-module.exports = { addMeal, updateMeal, deleteMeal, getSingleMeal, getAllMeals, renderAddMeal };
+const renderMealsList = (req, res) => {
+    try {
+        res.render('meals-list');
+    }
+    catch (err) {
+        res.send(err.message);
+    }
+};
+module.exports = { addMeal,
+    updateMeal,
+    deleteMeal,
+    getSingleMeal,
+    getAllMeals,
+    renderAddMeal,
+    renderMealsList };

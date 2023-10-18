@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const mealRouter = require('./routes/mealRoute');
 const middlewares = require('./middleware/middleware')
 const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
 
 dotenv.config();
 
@@ -18,6 +19,9 @@ app.set('view engine', 'ejs');
 // defining the public files path
 app.use(express.static('public'));
 
+// method override
+app.use(methodOverride('X-HTTP-Method-Override'))
+
 // logging middleware for debuging
 app.use(middlewares.logger);
 
@@ -30,6 +34,9 @@ app.use(bodyParser.json());
 
 // meals route
 app.use('/meals', mealRouter);
+app.get('/', (req, res) => {
+    res.render('index', {title:'Restaurent Management System'})
+})
 
 // listening to requests
 app.listen(port, ()=> {

@@ -1,33 +1,11 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
-    <!-- <link rel="stylesheet" href=""> -->
-    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
-
-    <link rel="shortxut icon" type="icon/png" href="#">
-</head>
+<%- include('./partials/head.ejs') %>
 
 <body>
-    <!-- <header class="section-header">
-        <div class="header-box">
-            <div class="header-primary">
-                <h1>restaurant management system</h1>
-            </div>
-            <div class="header-secondry">
-                <h2>
-                    systems should be like this!
-                </h2>
-            </div>
-        </div> 
-    </header> -->
-
-
-
-
-
+    
     <section class="section-meal">
+        <%- include('./partials/nav.ejs') %>
         <div class="row">
             <div class="meal">
                 <div class="meal__form">
@@ -54,13 +32,6 @@
             </div>
         </div>
     </section>
-
-
-
-
-
-
-
 
 </body>
 
