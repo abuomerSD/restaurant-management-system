@@ -241,6 +241,33 @@ body {
   .row .col-1-4 {
     width: calc((100% - (8rem)*3)/4); }
 
+.header {
+  height: 7rem;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch; }
+
+h1 {
+  align-self: center; }
+
+.meal-nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center; }
+  .meal-nav__item {
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    padding: 0 2rem; }
+    .meal-nav__item:hover {
+      background-color: #777; }
+  .meal-nav__item:hover .meal-nav__link {
+    color: #fff; }
+  .meal-nav__link:link, .meal-nav__link:visited {
+    text-decoration: none;
+    color: #777; }
+
 .section-header {
   height: 95vh;
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); }
@@ -263,22 +290,10 @@ body {
 .meal {
   transform: translateY(15%);
   margin: auto;
-  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.8) 50%, transparent 50%), url(/img/back-1.jpg);
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.8) 50%, transparent 50%), url(/public/img/back-1.jpg);
   background-size: cover;
   border-radius: 3px;
   box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.3); }
   .meal__form {
     width: 60%;
     padding: 6rem; }
-
-.meal-card{
-  background-color:#7ed56f;
-  margin: 5px;
-  border-left: crimson solid 8px;
-  /* text-decoration: none; */
-}
-
-.meals-list a:hover, a:visited, a:link, a:active{
-  color: black;
-  text-decoration: none;
-}
