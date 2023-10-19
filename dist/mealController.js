@@ -108,7 +108,6 @@ const renderMealsList = (req, res) => {
 };
 const getMealJson = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const mealName = req.body.name;
-    console.log(mealName);
     try {
         const meal = yield prisma.meal.findUnique({
             where: {

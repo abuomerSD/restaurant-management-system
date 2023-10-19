@@ -117,7 +117,6 @@ const renderMealsList = (req: Request, res: Response) => {
 
 const getMealJson = async (req: Request, res:Response) => {
     const mealName = req.body.name;
-    console.log(mealName)
     try{
         const meal = await prisma.meal.findUnique({
           where: {
