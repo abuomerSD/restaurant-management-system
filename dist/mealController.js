@@ -106,10 +106,26 @@ const renderMealsList = (req, res) => {
         res.send(err.message);
     }
 };
+const getMealJson = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const mealName = req.body.name;
+    console.log(mealName);
+    try {
+        const meal = yield prisma.meal.findUnique({
+            where: {
+                name: mealName,
+            }
+        });
+        res.json(meal);
+    }
+    catch (err) {
+        res.send(err.message);
+    }
+});
 module.exports = { addMeal,
     updateMeal,
     deleteMeal,
     getSingleMeal,
     getAllMeals,
     renderAddMeal,
-    renderMealsList };
+    renderMealsList,
+    getMealJson };

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head.ejs') %>
+<body>
+    <%- include('./partials/nav.ejs') %>
+    <datalist id="meals-list">
+        <% meals.forEach(meal => { %>
+            <option value="<%= meal.name %>"></option>
+            
+            <% }); %>
+        </datalist>
+    <input type="text" name="meal-name" id="meal-name" placeholder="Enter Meal Name" list="meals-list">
+    <input type="text" name="meal-price" id="meal-price" placeholder="Meal Price" >
+    <input type="text" name="meal-qty" id="meal-qty">
+    <button>Add To Invoice</button>
+
+    <script>
+        const mealName = document.getElementById("meal-name");
+        const mealPrice = document.getElementById("meal-price")
+        // const meals = 
+        mealName.addEventListener("change", getMealPrice);
+
+        const url = '/meals/get-single-meal'
+        let response;
+        let meal_json;
+        async function getMealPrice() {
+            const meal_name = mealName.value ;
+            const data = {"name": meal_name}
+            console.log(data);
+              response = await fetch(url,{
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json, text/plain, */*',
+                    "Content-Type": "application/json",
+                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                body: JSON.stringify(data),
+                
+            })
+
+            .then(response => response.json())
+            .then( (response)=> {
+                console.log(response)
+                meal_price = response.price;
+                mealPrice.value = meal_price;
+            } )
+            .catch(err => console.log(err))
+            // return response.json();
+        }
+    </script>
+</body>
+</html>

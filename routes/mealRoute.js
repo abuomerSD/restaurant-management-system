@@ -18,6 +18,8 @@ router.delete('/:id', controller.deleteMeal);
 
 router.get('/:id', controller.getSingleMeal);
 
+router.post('/get-single-meal', controller.getMealJson)
+
 
 
 module.exports = router;

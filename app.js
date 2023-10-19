@@ -1,6 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const mealRouter = require('./routes/mealRoute');
+const orderRoute = require('./routes/orderRoute');
 const middlewares = require('./middleware/middleware')
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
@@ -34,6 +35,10 @@ app.use(bodyParser.json());
 
 // meals route
 app.use('/meals', mealRouter);
+
+// orders route
+app.use('/orders', orderRoute)
+
 app.get('/', (req, res) => {
     res.render('index', {title:'Restaurent Management System'})
 })

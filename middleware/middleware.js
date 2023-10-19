@@ -1,5 +1,5 @@
 const logger = (req, res, next) => {
-    console.log(`[${new Date().toLocaleTimeString() }] ${req.url} ${req.method}`);
+    console.log(`[${new Date().toLocaleTimeString() }] | ${req.url} | ${req.method} | Request Body: ${req.body}`);
     next();
 }
 

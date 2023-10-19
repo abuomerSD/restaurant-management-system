@@ -115,6 +115,20 @@ const renderMealsList = (req: Request, res: Response) => {
     }
 }
 
+const getMealJson = async (req: Request, res:Response) => {
+    const mealName = req.body.name;
+    console.log(mealName)
+    try{
+        const meal = await prisma.meal.findUnique({
+          where: {
+            name:mealName,
+          }  
+        })
+        res.json(meal);
+    } catch(err: any){
+        res.send(err.message);
+    }
+}
 
 module.exports = { addMeal,
      updateMeal,
@@ -122,4 +136,5 @@ module.exports = { addMeal,
        getSingleMeal,
         getAllMeals,
          renderAddMeal,
-          renderMealsList }
+          renderMealsList,
+          getMealJson }
