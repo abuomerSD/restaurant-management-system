@@ -214,6 +214,60 @@ body {
   text-decoration: none;
   padding: 3px; }
 
+.meal-list {
+  height: 100%;
+  display: flex;
+  padding: 0 4rem;
+  flex-wrap: wrap; }
+
+.meal-card {
+  box-shadow: 0 1rem 4rem rgba(119, 119, 119, 0.5);
+  width: 20rem;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  justify-content: space-between;
+  margin: 2rem; }
+  .meal-card__details {
+    padding: 0 1.5rem;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; }
+  .meal-card__name {
+    font-size: 3rem;
+    color: #28b485; }
+  .meal-card__price {
+    font-size: 2.5rem; }
+  .meal-card__contents {
+    padding: 1rem 2rem; }
+  .meal-card__action {
+    overflow: hidden;
+    height: 4rem;
+    margin: 0;
+    display: flex;
+    flex-direction: row; }
+    .meal-card__action a {
+      text-decoration: none;
+      color: #fff;
+      text-align: center; }
+  .meal-card .button-update {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #28b485;
+    width: 100%;
+    text-align: center;
+    padding: 1rem auto; }
+  .meal-card .button-delete {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ff7730;
+    width: 100%;
+    padding: 1rem auto; }
+
 .row {
   max-width: 114rem;
   margin: 8rem auto;
