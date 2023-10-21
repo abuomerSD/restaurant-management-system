@@ -13,7 +13,9 @@
     <input type="text" name="meal-price" id="meal-price" placeholder="Meal Price" disabled>
     <input type="number" name="meal-qty" id="meal-qty">
     <button id="btn-add-meal">Add To Invoice</button>
+    <button id="btn-save-invoice">Save Invoice</button>
     <b><p id="invoice-total">Invoice Total</p></b>
+    <div id="invoice-body"></div>
 
     <script>
         const txtMealName = document.getElementById("meal-name");
@@ -21,9 +23,12 @@
         const txtMealQty = document.getElementById("meal-qty");
         const addMealButton = document.getElementById("btn-add-meal");
         const txtInvoiceTotal = document.getElementById("invoice-total");
+        const invoiceBody = document.getElementById("invoice-body");
+        const btnSaveInvoice = document.getElementById("btn-save-invoice");
 
         txtMealName.addEventListener("change", getMealPrice);
         addMealButton.addEventListener("click", addToInvoice)
+        btnSaveInvoice.addEventListener("click", saveInvoice);
         // txtMealQty.addEventListener("submit", addToInvoice)
 
         const url = '/meals/get-single-meal'
@@ -54,12 +59,23 @@
 
 
         let invoiceTotal = 0;
+        let counter = 1;
+        let invoiceItems = [];
         // execute when click on add button
         function addToInvoice(){
             const name = txtMealName.value;
             const price = txtMealPrice.value;
             const qty = txtMealQty.value;
             const total = price * qty;
+            const item = {
+                name,
+                price,
+                qty,
+                total
+            }
+            console.log(item);
+            invoiceItems.push(item);
+            console.log(invoiceItems);
 
             if (!name) {
                 // console.log('Please Fill all Text Fields')
@@ -76,35 +92,38 @@
                 alert('Error: The Quantity is less than 1');
                 return;
             }
+            const card = `<div id="div-${counter}">
+                                <p  style="display: inline;">${name}</p>
+                                <p  style="display: inline;">${qty}</p>
+                                <p  style="display: inline;">${price}$</p>
+                                <p  style="display: inline;">${total}</p>
+                                <button id="btn-${counter}" onClick="deleteItem('div-${counter}', ${total})">Delete</button>
+                           </div>     `;
 
-            const txtName = document.createTextNode(name);
-            const txtPrice = document.createTextNode(price);
-            const txtQty = document.createTextNode(qty);
-            const txtTotal = document.createTextNode(total);
-
-            const nameElement = document.createElement("p");
-            const priceElement = document.createElement("p");
-            const qtyElement = document.createElement("p");
-            const totalElement = document.createElement("p");
-            const brk = document.createElement("br")
-
-            nameElement.appendChild(txtName);
-            priceElement.appendChild(txtPrice);
-            qtyElement.appendChild(txtQty);
-            totalElement.appendChild(txtTotal);
-            
-            document.body.append(nameElement);
-            document.body.append(priceElement);
-            document.body.append(qtyElement);
-            document.body.append(totalElement);
-            document.body.append(brk);
+            invoiceBody.innerHTML += card;
 
             txtMealName.value = '';
             txtMealPrice.value = '';
             txtMealQty.value = '';
 
             invoiceTotal += total;
-            txtInvoiceTotal.innerText= invoiceTotal ;
+            txtInvoiceTotal.innerText= "Invoice Total: " + invoiceTotal ;
+
+            counter += 1;
+        }
+
+        function deleteItem(divID, total){
+            invoiceTotal -= total; 
+            txtInvoiceTotal.innerText= "Invoice Total: " + invoiceTotal ;
+            document.getElementById(divID).remove();
+        }
+
+        function saveInvoice(){
+            // alert('Do you want to Save The Invoice ?');
+            const isOk = confirm('Do you want to Save The Invoice ?');
+            if(isOk){
+                alert('Invoice Saved');
+            }
         }
     </script>
 </body>

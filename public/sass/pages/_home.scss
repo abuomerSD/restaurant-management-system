@@ -1,15 +1,31 @@
+
+.header-primary{
+    color: #fff;
+
+}
+
+.header-secondry{
+    color: #fff;
+    margin-bottom: 2rem;
+}
+
 .section-header {
 
     height: 95vh;
-    // background-image: radial-gradient();
+    background-image: radial-gradient(rgba($color-dark-primary,.8),rgba($color-light-primary,.8)),url(../../img/back-1.jpg);
     clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    line-height: 2;
+
+
 }
 
 .header-box {
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
+    text-transform: uppercase;
+    text-align: center;
 }
 
 .section-meal {
@@ -29,7 +45,7 @@
             rgba($color-white, .8) 0%,
             rgba($color-white, .8) 50%,
             transparent 50%),
-        url(/public/img/back-1.jpg);
+        url(../../img/back-1.jpg);
     background-size: cover;
     border-radius: 3px;
     box-shadow: 0 1rem 4rem rgba($color-black, .3);
