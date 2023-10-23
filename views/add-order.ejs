@@ -9,11 +9,16 @@
             
             <% }); %>
         </datalist>
+    <h2>Invoice Number:</h2>
+    <input type="text" name="customer-name" id="customer-name" placeholder="Customer Name">
     <input type="text" name="meal-name" id="meal-name" placeholder="Enter Meal Name" list="meals-list">
+    <button id="btn-clear-name">clear</button>
     <input type="text" name="meal-price" id="meal-price" placeholder="Meal Price" disabled>
     <input type="number" name="meal-qty" id="meal-qty">
     <button id="btn-add-meal">Add To Invoice</button>
     <button id="btn-save-invoice">Save Invoice</button>
+    <button id="btn-print">Print</button>
+    <button id="btn-new">New Invoice</button>
     <b><p id="invoice-total">Invoice Total</p></b>
     <div id="invoice-body"></div>
 
@@ -25,10 +30,16 @@
         const txtInvoiceTotal = document.getElementById("invoice-total");
         const invoiceBody = document.getElementById("invoice-body");
         const btnSaveInvoice = document.getElementById("btn-save-invoice");
+        const btnPrint = document.getElementById("btn-print");
+        const btnNewInvoice = document.getElementById("btn-new");
+        const btnClearMealName = document.getElementById("btn-clear-name");
 
         txtMealName.addEventListener("change", getMealPrice);
         addMealButton.addEventListener("click", addToInvoice)
         btnSaveInvoice.addEventListener("click", saveInvoice);
+        btnPrint.addEventListener("click", printInvoice);
+        btnNewInvoice.addEventListener("click", newInvoice);
+        btnClearMealName.addEventListener("click", clearMealName);
         // txtMealQty.addEventListener("submit", addToInvoice)
 
         const url = '/meals/get-single-meal'
@@ -73,9 +84,8 @@
                 qty,
                 total
             }
-            console.log(item);
+
             invoiceItems.push(item);
-            console.log(invoiceItems);
 
             if (!name) {
                 // console.log('Please Fill all Text Fields')
@@ -92,12 +102,13 @@
                 alert('Error: The Quantity is less than 1');
                 return;
             }
+
             const card = `<div id="div-${counter}">
                                 <p  style="display: inline;">${name}</p>
                                 <p  style="display: inline;">${qty}</p>
                                 <p  style="display: inline;">${price}$</p>
                                 <p  style="display: inline;">${total}</p>
-                                <button id="btn-${counter}" onClick="deleteItem('div-${counter}', ${total})">Delete</button>
+                                <button id="btn-${counter}" onClick="deleteItem('div-${counter}',${total})">Delete</button>
                            </div>     `;
 
             invoiceBody.innerHTML += card;
@@ -115,7 +126,18 @@
         function deleteItem(divID, total){
             invoiceTotal -= total; 
             txtInvoiceTotal.innerText= "Invoice Total: " + invoiceTotal ;
-            document.getElementById(divID).remove();
+            const itemDiv = document.getElementById(divID)
+
+            const mealName = document.querySelector(`#${divID}`).firstElementChild.innerHTML;
+            
+            itemDiv.remove();
+            
+            const itemsToRemove = invoiceItems.filter(meal => meal.name === mealName);
+
+            itemsToRemove.forEach(x => invoiceItems.splice(invoiceItems.findIndex(n => n.name === x.name),1));
+
+            console.log(invoiceItems);
+            
         }
 
         function saveInvoice(){
@@ -124,6 +146,19 @@
             if(isOk){
                 alert('Invoice Saved');
             }
+        }
+
+        function printInvoice(){
+            alert('invoice printed');
+        }
+
+        function newInvoice() {
+            alert('new invoice');
+        }
+
+        function clearMealName() {
+            txtMealName.value = "";
+            txtMealPrice.value = "";
         }
     </script>
 </body>
