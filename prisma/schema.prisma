@@ -15,3 +15,21 @@ model Meal {
   name  String @unique
   price Float
 }
+
+model Order {
+  id            Int             @id @default(autoincrement())
+  customer_name String
+  createdAt     DateTime        @default(now())
+  isPayed       Boolean
+  order_total   Float
+  Order_Details Order_Details[]
+}
+
+model Order_Details {
+  id      Order  @relation(fields: [orderID], references: [id])
+  name    String @unique
+  price   Float
+  qty     Int
+  total   Float
+  orderID Int
+}

@@ -1,5 +1,7 @@
+const chalk = require('chalk');
+
 const logger = (req, res, next) => {
-    console.log(`[${new Date().toLocaleTimeString() }] | ${req.url} | ${req.method} | Request Body: ${req.body}`);
+    console.log(`[${new Date().toLocaleTimeString() }] `, chalk.red(`${req.url} `), chalk.green(`${req.method}`));
     next();
 }
 

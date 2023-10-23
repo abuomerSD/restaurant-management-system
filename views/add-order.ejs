@@ -23,6 +23,7 @@
     <div id="invoice-body"></div>
 
     <script>
+        const txtCustomerName = document.getElementById('customer-name');
         const txtMealName = document.getElementById("meal-name");
         const txtMealPrice = document.getElementById("meal-price")
         const txtMealQty = document.getElementById("meal-qty");
@@ -140,10 +141,33 @@
             
         }
 
-        function saveInvoice(){
-            // alert('Do you want to Save The Invoice ?');
+        async function saveInvoice(){
             const isOk = confirm('Do you want to Save The Invoice ?');
             if(isOk){
+                try {
+                    const url = '/orders';
+
+                    const data = {
+                        customer_name :txtCustomerName.value,
+                        order_total: invoiceTotal,
+                        isPayed: true,
+                        Order_Details: invoiceItems
+                    }
+
+                    console.log(data);
+
+                    let response = await fetch(url,{
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json, text/plain, */*',
+                        "Content-Type": "application/json",
+                        },
+                    body: JSON.stringify(data),
+                    
+                })
+                } catch (error) {
+                    console.log(err);
+                }
                 alert('Invoice Saved');
             }
         }
