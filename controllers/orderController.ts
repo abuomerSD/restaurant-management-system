@@ -4,8 +4,11 @@ import { Request, Response } from "express";
 
 const prisma = new PrismaClient();
 
-const renderOrdersPage = (req: Request, res: Response) => {
-    res.render('orders-list', { title: 'Orders List'});
+const renderOrdersPage = async (req: Request, res: Response) => {
+    const orders = await prisma.order.findMany();
+    // console.log(orders);
+
+    res.render('orders-list', { title: 'Orders List', orders});
 }
 
 const renderAddOrderPage = async (req: Request, res: Response) => {
@@ -13,7 +16,24 @@ const renderAddOrderPage = async (req: Request, res: Response) => {
     try
     {
          meals = await prisma.meal.findMany();
-         res.render('add-order', { title: 'ADD Order', meals});
+         const orders = await prisma.order.findMany({
+            orderBy: {
+                id:'desc'
+            },
+            take:1
+         })
+         
+        //  console.log(meals);
+        //  console.log(orders[0].id);
+         let lastInvoiceId :Number ;
+
+         if(orders.length < 1){
+            lastInvoiceId = 0;
+         }
+         else {
+            lastInvoiceId = orders[0].id;
+         }
+         res.render('add-order', { title: 'ADD Order', meals, lastInvoiceId});
     }
     catch(err :any){
         res.send(err.message);
@@ -22,17 +42,15 @@ const renderAddOrderPage = async (req: Request, res: Response) => {
 
 const saveOrder = async (req: Request, res:Response) => {
 
-    // console.log('body: ',req.body);
     const order_details = req.body.Order_Details;
-    
 
     try {
         const order = await prisma.order.create({
-            // data: req.body,
+            
             data:{
                 customer_name: req.body.customer_name,
                 order_total: req.body.order_total,
-                isPayed: req.body.isPayed,
+                isPaid: req.body.isPayed,
                 Order_Details: {
                     create: order_details,
                 },

@@ -3,5 +3,17 @@
 <%- include('./partials/head.ejs') %>
 <body>
     <%- include('./partials/nav.ejs') %>
+    <% orders.forEach(order => { %>
+        <div class="order">
+            <p style="display: inline;">orderId: <%= order.id %></p>
+            <p style="display: inline;">customerName: <%= order.customer_name %></p>
+            <p style="display: inline;">createdAt: <%= order.createdAt %></p>
+            <p style="display: inline;">isPaid: <%= order.isPaid %></p>
+            <p style="display: inline;">orderTotal: <%= order.order_total %></p>
+            <p style="display: inline;">order.order_total</p>
+            <br>
+            <p>========================</p>
+        </div>
+    <% }); %>
 </body>
 </html>

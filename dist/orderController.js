@@ -11,29 +11,44 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
-const renderOrdersPage = (req, res) => {
-    res.render('orders-list', { title: 'Orders List' });
-};
+const renderOrdersPage = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const orders = yield prisma.order.findMany();
+    // console.log(orders);
+    res.render('orders-list', { title: 'Orders List', orders });
+});
 const renderAddOrderPage = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     let meals;
     try {
         meals = yield prisma.meal.findMany();
-        res.render('add-order', { title: 'ADD Order', meals });
+        const orders = yield prisma.order.findMany({
+            orderBy: {
+                id: 'desc'
+            },
+            take: 1
+        });
+        //  console.log(meals);
+        //  console.log(orders[0].id);
+        let lastInvoiceId;
+        if (orders.length < 1) {
+            lastInvoiceId = 0;
+        }
+        else {
+            lastInvoiceId = orders[0].id;
+        }
+        res.render('add-order', { title: 'ADD Order', meals, lastInvoiceId });
     }
     catch (err) {
         res.send(err.message);
     }
 });
 const saveOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    // console.log('body: ',req.body);
     const order_details = req.body.Order_Details;
     try {
         const order = yield prisma.order.create({
-            // data: req.body,
             data: {
                 customer_name: req.body.customer_name,
                 order_total: req.body.order_total,
-                isPayed: req.body.isPayed,
+                isPaid: req.body.isPayed,
                 Order_Details: {
                     create: order_details,
                 },

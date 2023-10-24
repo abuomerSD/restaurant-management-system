@@ -20,7 +20,7 @@ model Order {
   id            Int             @id @default(autoincrement())
   customer_name String
   createdAt     DateTime        @default(now())
-  isPayed       Boolean
+  isPaid        Boolean
   order_total   Float
   Order_Details Order_Details[]
 }
