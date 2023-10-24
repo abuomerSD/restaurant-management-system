@@ -26,8 +26,9 @@ model Order {
 }
 
 model Order_Details {
-  id      Order  @relation(fields: [orderID], references: [id])
-  name    String @unique
+  id      String @id @default(uuid())
+  order   Order  @relation(fields: [orderID], references: [id])
+  name    String
   price   Float
   qty     Int
   total   Float

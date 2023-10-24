@@ -25,40 +25,28 @@ const renderAddOrderPage = (req, res) => __awaiter(void 0, void 0, void 0, funct
     }
 });
 const saveOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    // const data = {
-    //     id: req.body.id,
-    customer_name: req.body.customer_name,
-        //     order_total: req.body.order_total,
-        //     isPayed: req.body.isPayed,
-        // // }
-        // const data = req.body;
-        console.log('body: ', req.body);
+    // console.log('body: ',req.body);
     const order_details = req.body.Order_Details;
     try {
         const order = yield prisma.order.create({
+            // data: req.body,
             data: {
                 customer_name: req.body.customer_name,
                 order_total: req.body.order_total,
                 isPayed: req.body.isPayed,
-                // Order_Details: {
-                //     create:  order_details
-                // }
+                Order_Details: {
+                    create: order_details,
+                },
             },
+            include: {
+                Order_Details: true,
+            }
+        })
+            .then(() => res.redirect('/orders/add-order'))
+            .catch((err) => {
+            console.log(err.message);
+            res.send(err.message);
         });
-        console.log('order: ', order);
-        console.log('details: ', order_details);
-        // for(let i =0 ; i < order_details.length ; i++){
-        //     const details = await prisma.order_Details.create({
-        //         // data: {
-        //         //     orderID: order.id,
-        //         //     meal_name: order_details[i].name,
-        //         //     meal_price: order_details[i].price,
-        //         //     meal_qty: order_details[i].qty,
-        //         //     meal_total: order_details[i].total,
-        //         // }
-        //         data: order_details
-        //     })
-        // }
     }
     catch (error) {
         res.send(error.message);

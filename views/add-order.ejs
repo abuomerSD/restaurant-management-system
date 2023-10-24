@@ -76,9 +76,13 @@
         // execute when click on add button
         function addToInvoice(){
             const name = txtMealName.value;
-            const price = txtMealPrice.value;
-            const qty = txtMealQty.value;
-            const total = price * qty;
+            const price = parseFloat(txtMealPrice.value);
+            const qty = parseInt(txtMealQty.value);
+            const total = parseFloat(price * qty);
+
+            // console.log(`type of price ${typeof price}`)
+            // console.log(`type of qty ${typeof qty}`)
+            // console.log(`type of total ${typeof total}`)
             const item = {
                 name,
                 price,
@@ -87,6 +91,7 @@
             }
 
             invoiceItems.push(item);
+            // console.log(invoiceItems);
 
             if (!name) {
                 // console.log('Please Fill all Text Fields')
@@ -137,11 +142,17 @@
 
             itemsToRemove.forEach(x => invoiceItems.splice(invoiceItems.findIndex(n => n.name === x.name),1));
 
-            console.log(invoiceItems);
+            // console.log(invoiceItems);
             
         }
 
         async function saveInvoice(){
+
+            if (txtCustomerName.value === "") {
+                alert('Please Enter The Customer Name');
+                return;
+            }
+
             const isOk = confirm('Do you want to Save The Invoice ?');
             if(isOk){
                 try {
@@ -154,7 +165,7 @@
                         Order_Details: invoiceItems
                     }
 
-                    console.log(data);
+                    // console.log(data);
 
                     let response = await fetch(url,{
                     method: 'POST',
@@ -162,14 +173,18 @@
                         'Accept': 'application/json, text/plain, */*',
                         "Content-Type": "application/json",
                         },
-                    body: JSON.stringify(data),
                     
-                })
-                } catch (error) {
-                    console.log(err);
+                    body:JSON.stringify(data),
+                    
                 }
-                alert('Invoice Saved');
+                )
+                // console.log(JSON.stringify(data));    
+            } catch (error) {
+                console.log(err);
+                    return;
+                }
             }
+            window.location.reload();
         }
 
         function printInvoice(){
