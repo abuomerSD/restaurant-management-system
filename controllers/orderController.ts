@@ -1,5 +1,4 @@
 import { PrismaClient } from "@prisma/client";
-import { create } from "domain";
 import { Request, Response } from "express";
 
 const prisma = new PrismaClient();
@@ -72,8 +71,30 @@ const saveOrder = async (req: Request, res:Response) => {
     }
 }
 
+const deleteOrder =async (req: Request, res: Response) => {
+    const id = Number(req.params.id);
+    try {
+        const orderDetails = await prisma.order_Details.deleteMany({
+            where:{
+                orderID : id,
+            }
+            ,
+        })
+        
+        const order = await prisma.order.delete({
+            where: {
+                id: id
+            }
+        });
+    } catch (error: any) {
+        res.send(error.message);
+        console.log(error.message);
+    }
+}
+
 module.exports = { 
     renderOrdersPage,
     renderAddOrderPage, 
-    saveOrder
+    saveOrder,
+    deleteOrder
 }

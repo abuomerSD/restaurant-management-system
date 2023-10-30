@@ -67,8 +67,28 @@ const saveOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         res.send(error.message);
     }
 });
+const deleteOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = Number(req.params.id);
+    try {
+        const orderDetails = yield prisma.order_Details.deleteMany({
+            where: {
+                orderID: id,
+            },
+        });
+        const order = yield prisma.order.delete({
+            where: {
+                id: id
+            }
+        });
+    }
+    catch (error) {
+        res.send(error.message);
+        console.log(error.message);
+    }
+});
 module.exports = {
     renderOrdersPage,
     renderAddOrderPage,
-    saveOrder
+    saveOrder,
+    deleteOrder
 };

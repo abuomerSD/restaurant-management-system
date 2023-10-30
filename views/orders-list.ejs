@@ -3,6 +3,8 @@
 <%- include('./partials/head.ejs') %>
 <body>
     <%- include('./partials/nav.ejs') %>
+    <h2>Orders List</h2>
+    <% let i = 1 %>
     <% orders.forEach(order => { %>
         <div class="order">
             <p style="display: inline;">orderId: <%= order.id %></p>
@@ -11,8 +13,12 @@
             <p style="display: inline;">isPaid: <%= order.isPaid %></p>
             <p style="display: inline;">orderTotal: <%= order.order_total %></p>
             <br>
+            <button id="btn-edit-<%= i %>" onclick="editInvoice('<%= order.id %>')">Edit Invoice</button>
+            <button id="btn-delete-<%= i %>" onclick="deleteInvoice('<%= order.id %>')">Delete Invoice</button>
             <p>========================</p>
+            <% i++ %>
         </div>
     <% }); %>
+    <script src="/js/order-list.js"></script>
 </body>
 </html>
