@@ -20,6 +20,7 @@ const addMeal = async (req: Request, res: Response) => {
 
 const updateMeal = async (req: Request, res: Response) => {
     const meal = req.body;
+    console.log(req.body)
     const id = req.params.id;
     try{
         await prisma.meal.update({
@@ -44,18 +45,19 @@ const updateMeal = async (req: Request, res: Response) => {
 const deleteMeal = async (req: Request, res: Response) => {
     const id = req.params.id;
     try {
-        await prisma.meal.delete({
+        const meal = await prisma.meal.delete({
             where: {
                 id: id,
             }
         })
-    
+        
         res.json({
             'msg': 'meal deleted successfully'
         })
     }
     catch(err: any){
         res.status(404).send(err.message);
+        console.log(err.message)
     }
 }
 

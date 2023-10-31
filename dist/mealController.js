@@ -27,6 +27,7 @@ const addMeal = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 });
 const updateMeal = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const meal = req.body;
+    console.log(req.body);
     const id = req.params.id;
     try {
         yield prisma.meal.update({
@@ -49,7 +50,7 @@ const updateMeal = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 const deleteMeal = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.id;
     try {
-        yield prisma.meal.delete({
+        const meal = yield prisma.meal.delete({
             where: {
                 id: id,
             }
@@ -60,6 +61,7 @@ const deleteMeal = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
     catch (err) {
         res.status(404).send(err.message);
+        console.log(err.message);
     }
 });
 const getSingleMeal = (req, res) => __awaiter(void 0, void 0, void 0, function* () {

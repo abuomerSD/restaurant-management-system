@@ -29,14 +29,14 @@
                         debitis aliquid reiciendis, odit ratione velit.</div>
                     <div class="meal-card__action">
                         <div class="meal-card__action button-update">
-                            <a href="#">
-                                update
-                            </a>
+                            <!-- <a href="#"> -->
+                                <button onclick="updateMeal('<%= meal.id %>')">update</button>
+                            <!-- </a> -->
                         </div>
                         <div class="meal-card__action button-delete">
-                            <a href="#">
-                                delete
-                            </a>
+                            <!-- <a href="#"> -->
+                                <button onclick="deleteMeal('<%= meal.id %>')">delete</button>
+                            <!-- </a> -->
                         </div>
                     </div>
                 </div>
@@ -44,10 +44,12 @@
 
 
         </section>
-
+        <script src="/js/meals-list.js"></script>
 </body>
 
 </html>
+
+
 
 
 
