@@ -8,14 +8,14 @@
 <body>
     <%- include('./partials/nav.ejs') %>
     <div class="meal-details">
-        <form action="/meals/<%= meal.id %>?_method=PUT"" method="post">
+        <!-- <form action="/meals/<%= meal.id %>?_method=PUT"" method="post"> -->
             <input type="text" name="name" id="name" value="<%= meal.name %>">
             <input type="text" name="price" id="price" value="<%= meal.price %>">
-            <input type="submit" value="update">
+            <input type="button" value="update" onclick="update('<%= meal.id %>')">
             <!-- <input type="hidden" name="_method" value="PUT"> -->
 
-        </form>
-        <button>Delete</button>
+        <!-- </form> -->
     </div>
+    <script src="/js/meal-details.js"></script>
 </body>
 </html>

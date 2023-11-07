@@ -1,19 +1,14 @@
 async function updateMeal(id) {
-    const name = prompt('Please Enter the new Meal Name');
-    const price = prompt('Please Enter the new Meal Price');
-
-    console.log(`${name} ${price}`)
+    
     await fetch(`/meals/${id}`, {
-        method: "PUT",
+        method: "GET",
             headers: {
                 'Accept': 'application/json, text/plain, */*',
                 "Content-Type": "application/json",
                 },
-                body:{
-                    name:name,
-                    price: Number(price)
-                }
+                // body:JSON.parse(JSON.stringify(data))
     })
+    // window.location.reload();
 }
 
 async function deleteMeal(id) {
@@ -26,6 +21,7 @@ async function deleteMeal(id) {
                     "Content-Type": "application/json",
                     },
         })
+        window.location.reload();
     }
     
 }

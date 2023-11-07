@@ -19,11 +19,12 @@ const addMeal = async (req: Request, res: Response) => {
 }
 
 const updateMeal = async (req: Request, res: Response) => {
-    const meal = req.body;
-    console.log(req.body)
+    // res.render('update-meal', {title: 'Update Meal'})
     const id = req.params.id;
     try{
-        await prisma.meal.update({
+        const meal = req.body;
+        console.log(meal);
+        const newMeal = await prisma.meal.update({
             where:{
                 id: id,
             },
@@ -32,12 +33,11 @@ const updateMeal = async (req: Request, res: Response) => {
                 price: meal.price,
             },
         })
-        res.json({
-            "msg":"updated successfully",
-        })
+        console.log(newMeal)
+        res.redirect('/');
     }
     catch(err: any) {
-        res.status(404).send(err.message);
+        res.send(err.message);
     }
     
 }
@@ -51,9 +51,7 @@ const deleteMeal = async (req: Request, res: Response) => {
             }
         })
         
-        res.json({
-            'msg': 'meal deleted successfully'
-        })
+        res.redirect('/');
     }
     catch(err: any){
         res.status(404).send(err.message);
@@ -61,7 +59,7 @@ const deleteMeal = async (req: Request, res: Response) => {
     }
 }
 
-const getSingleMeal =async (req: Request, res: Response) => {
+const getSingleMeal = async (req: Request, res: Response) => {
     const id = req.params.id;
     try 
     {

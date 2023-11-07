@@ -26,11 +26,12 @@ const addMeal = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 const updateMeal = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const meal = req.body;
-    console.log(req.body);
+    // res.render('update-meal', {title: 'Update Meal'})
     const id = req.params.id;
     try {
-        yield prisma.meal.update({
+        const meal = req.body;
+        console.log(meal);
+        const newMeal = yield prisma.meal.update({
             where: {
                 id: id,
             },
@@ -39,12 +40,11 @@ const updateMeal = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
                 price: meal.price,
             },
         });
-        res.json({
-            "msg": "updated successfully",
-        });
+        console.log(newMeal);
+        res.redirect('/');
     }
     catch (err) {
-        res.status(404).send(err.message);
+        res.send(err.message);
     }
 });
 const deleteMeal = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -55,9 +55,7 @@ const deleteMeal = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
                 id: id,
             }
         });
-        res.json({
-            'msg': 'meal deleted successfully'
-        });
+        res.redirect('/');
     }
     catch (err) {
         res.status(404).send(err.message);
