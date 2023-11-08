@@ -23,7 +23,7 @@ const updateMeal = async (req: Request, res: Response) => {
     const id = req.params.id;
     try{
         const meal = req.body;
-        console.log(meal);
+        meal.price = Number(meal.price);
         const newMeal = await prisma.meal.update({
             where:{
                 id: id,
@@ -33,7 +33,6 @@ const updateMeal = async (req: Request, res: Response) => {
                 price: meal.price,
             },
         })
-        console.log(newMeal)
         res.redirect('/');
     }
     catch(err: any) {

@@ -14,6 +14,6 @@ async function deleteInvoice(id) {
                 },
             
         })
-        window.location.reload(true);
+        window.location.reload();
     }
 }

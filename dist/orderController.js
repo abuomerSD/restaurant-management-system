@@ -80,6 +80,7 @@ const deleteOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
                 id: id
             }
         });
+        res.redirect('/orders');
     }
     catch (error) {
         res.send(error.message);

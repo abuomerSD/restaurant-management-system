@@ -86,6 +86,7 @@ const deleteOrder =async (req: Request, res: Response) => {
                 id: id
             }
         });
+        res.redirect('/orders');
     } catch (error: any) {
         res.send(error.message);
         console.log(error.message);

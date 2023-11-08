@@ -30,7 +30,7 @@ const updateMeal = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     const id = req.params.id;
     try {
         const meal = req.body;
-        console.log(meal);
+        meal.price = Number(meal.price);
         const newMeal = yield prisma.meal.update({
             where: {
                 id: id,
@@ -40,7 +40,6 @@ const updateMeal = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
                 price: meal.price,
             },
         });
-        console.log(newMeal);
         res.redirect('/');
     }
     catch (err) {
