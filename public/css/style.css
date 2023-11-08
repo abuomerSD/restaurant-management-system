@@ -43,7 +43,7 @@ body {
   font-weight: 700;
   text-transform: uppercase;
   display: inline-block;
-  background-image: linear-gradient(to right, #7ed56f, #28b485);
+  background-image: linear-gradient(to right, #FA7070, #952323);
   -webkit-background-clip: text;
   color: transparent;
   transition: all .3s; }
@@ -69,10 +69,9 @@ html {
   font-size: 62.5%; }
 
 body {
-  font-family: "Roboto" , sans-serif;
-  font-size: 1.6rem;
-  line-height: 1.7;
-  color: #777; }
+  font-family: "Roboto", sans-serif;
+  color: #777;
+  min-height: 100%; }
 
 .u-center-text {
   text-align: center; }
@@ -106,10 +105,10 @@ body {
     color: inherit; }
     .form__input:focus {
       outline: none;
-      border-bottom: 3px solid #28b485;
+      border-bottom: 3px solid #952323;
       box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1); }
     .form__input:focus:invalid {
-      border-bottom: 3px solid #ff7730; }
+      border-bottom: 3px solid #DAD4B5; }
     .form__input::-webkit-input-placeholder {
       color: #777; }
   .form__label {
@@ -138,7 +137,7 @@ body {
   .form__radio-button {
     height: 2rem;
     width: 2rem;
-    border: 5px solid #28b485;
+    border: 5px solid #952323;
     border-radius: 50%;
     display: inline-block;
     position: absolute;
@@ -155,7 +154,7 @@ body {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background-color: #28b485;
+      background-color: #952323;
       opacity: 0; }
   .form__radio-input:checked ~ .form__radio-label .form__radio-button::after {
     opacity: 1; }
@@ -189,10 +188,10 @@ body {
 
 .btn__green {
   color: #fff;
-  background-color: #28b485;
+  background-color: #952323;
   border-radius: 5rem; }
   .btn__green::after {
-    background-color: #28b485; }
+    background-color: #952323; }
 
 .btn::after {
   content: "";
@@ -208,46 +207,70 @@ body {
 
 .btn-text:link, .btn-text:visited {
   display: inline-block;
-  color: #28b485;
-  border-bottom: 1px solid #28b485;
+  color: #952323;
+  border-bottom: 1px solid #952323;
   font-size: 1.6rem;
   text-decoration: none;
   padding: 3px; }
 
 .meal-list {
-  height: 100%;
-  display: flex;
-  padding: 0 4rem;
-  flex-wrap: wrap; }
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  grid-gap: 8rem;
+  padding: 2rem;
+  margin: 0 15rem; }
 
 .meal-card {
-  box-shadow: 0 1rem 4rem rgba(119, 119, 119, 0.5);
-  width: 20rem;
-  border-radius: 5px;
   display: flex;
   flex-direction: column;
   padding: 0;
   justify-content: space-between;
-  margin: 2rem; }
-  .meal-card__details {
-    padding: 0 1.5rem;
+  perspective: 150rem;
+  -moz-perspective: 150rem;
+  position: relative;
+  height: 20rem; }
+  .meal-card__side {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20rem;
+    transition: all .8s ease;
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+    backface-visibility: hidden;
     border-radius: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center; }
+    overflow: hidden;
+    padding: 1.5rem 3rem; }
+    .meal-card__side--front {
+      background-color: #fff;
+      display: grid;
+      grid-template-columns: 1fr; }
+    .meal-card__side--back {
+      background-color: #F2E8C6;
+      transform: rotateY(180deg);
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: min-content;
+      grid-row-gap: 1rem;
+      justify-items: center;
+      align-content: center; }
+  .meal-card:hover .meal-card__side--front {
+    transform: rotateY(-180deg); }
+  .meal-card:hover .meal-card__side--back {
+    transform: rotateY(0); }
   .meal-card__name {
     font-size: 3rem;
-    color: #28b485; }
+    color: #952323; }
   .meal-card__price {
     font-size: 2.5rem; }
-  .meal-card__contents {
+  .meal-card__back {
     padding: 1rem 2rem; }
   .meal-card__action {
     overflow: hidden;
     height: 4rem;
     margin: 0;
-    display: flex;
-    flex-direction: row; }
+    width: 75%;
+    border-radius: 5px; }
     .meal-card__action a {
       text-decoration: none;
       color: #fff;
@@ -256,17 +279,20 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #28b485;
-    width: 100%;
+    background-color: #FA7070;
     text-align: center;
-    padding: 1rem auto; }
+    padding: 1rem auto;
+    border: none;
+    color: #fff; }
   .meal-card .button-delete {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #ff7730;
-    width: 100%;
-    padding: 1rem auto; }
+    background-color: #DAD4B5;
+    padding: 1rem auto;
+    background-color: #952323;
+    border: none;
+    color: #fff; }
 
 .row {
   max-width: 114rem;
@@ -301,18 +327,19 @@ body {
   background-color: #fff;
   display: flex;
   justify-content: space-around;
-  align-items: stretch;
-  box-shadow: 0 1rem 4rem rgba(119, 119, 119, 0.3); }
+  box-shadow: 0 1rem 4rem rgba(119, 119, 119, 0.3);
+  flex-wrap: wrap; }
 
 h1 {
-  align-self: center; }
+  align-self: flex-start; }
+
+h2 {
+  font-size: 1.7rem; }
 
 .meal-nav {
   display: flex;
-  justify-content: space-around;
-  align-items: stretch; }
+  justify-content: space-around; }
   .meal-nav__item {
-    align-self: stretch;
     display: flex;
     align-items: center;
     padding: 0 2rem; }
@@ -333,7 +360,7 @@ h1 {
 
 .section-header {
   height: 95vh;
-  background-image: radial-gradient(rgba(40, 180, 133, 0.8), rgba(126, 213, 111, 0.8)), url(../../img/back-1.jpg);
+  background-image: radial-gradient(rgba(149, 35, 35, 0.8), rgba(250, 112, 112, 0.8)), url(../../img/back-1.jpg);
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
   line-height: 2; }
 
@@ -345,17 +372,7 @@ h1 {
   text-transform: uppercase;
   text-align: center; }
 
-.section-meal {
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-image: linear-gradient(to right bottom, #28b485, #7ed56f); }
-
 .meal {
-  transform: translateY(15%);
   margin: auto;
   background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.8) 50%, transparent 50%), url(../../img/back-1.jpg);
   background-size: cover;

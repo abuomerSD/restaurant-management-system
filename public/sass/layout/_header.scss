@@ -1,28 +1,35 @@
-.header{
+.header {
     height: 8rem;
     background-color: #fff;
     display: flex;
     justify-content: space-around;
-    align-items: stretch;
-    box-shadow: 0 1rem 4rem rgba(#777,.3);
+    // align-items: stretch;
+    box-shadow: 0 1rem 4rem rgba(#777, .3);
+    flex-wrap: wrap;
 }
 
 
-h1{
-    align-self: center;
+h1 {
+    align-self: flex-start;
+
 }
+
+h2{
+    font-size: 1.7rem;
+}
+
 .meal-nav {
 
     display: flex;
     justify-content: space-around;
-    align-items: stretch;
-    
-  
+    // align-items: stretch;
+
+
 
 
     &__item {
 
-        align-self: stretch;
+        // align-self: stretch;
         display: flex;
         align-items: center;
         padding: 0 2rem;

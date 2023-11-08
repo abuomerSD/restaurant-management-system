@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <%= title %>
-    </title>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
+
+
+
+<%- include('./partials/head.ejs') %>
+
 
 <body>
     <%- include('./partials/nav.ejs') %>
@@ -16,6 +13,8 @@
 
             <% meals.forEach(meal=> { %>
                 <div class="meal-card">
+
+                    <div class="meal-card__side meal-card__side--front">
                     <div class="meal-card__details">
                         <div class="meal-card__name">
                             <%= meal.name %>
@@ -24,18 +23,26 @@
                             <%= meal.price %>
                                 <%= dollarSign %>
                         </div>
-                    </div>
+                    
                     <div class="meal-card__contents">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quod odio
                         debitis aliquid reiciendis, odit ratione velit.</div>
                     <div class="meal-card__action">
+                    </div>
+                    
+                </div>
+                    </div>
+
+                <div class="meal-card__side meal-card__side--back">
+
+
                         <div class="meal-card__action button-update">
                             <!-- <a href="/meals/<%= meal.id %>"> -->
-                                <button onclick="updateMeal('<%= meal.id %>')">update</button>
+                                <button onclick="updateMeal('<%= meal.id %>')" class="button-update">update</button>
                             <!-- </a> -->
                         </div>
                         <div class="meal-card__action button-delete">
                             <!-- <a href="#"> -->
-                                <button onclick="deleteMeal('<%= meal.id %>')">delete</button>
+                                <button onclick="deleteMeal('<%= meal.id %>')" class="button-delete">delete</button>
                             <!-- </a> -->
                         </div>
                     </div>

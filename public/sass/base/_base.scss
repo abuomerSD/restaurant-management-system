@@ -1,22 +1,24 @@
 *,
 ::before,
-::after{
+::after {
     margin: 0;
-    padding:0;
+    padding: 0;
     box-sizing: inherit;
 }
 
 
-html{
+html {
     font-size: 62.5%;
 
 }
 
 
-body{
-    font-family: "Roboto" , sans-serif;
-    font-size: 1.6rem;
-    line-height: 1.7;
-color: $color-font-main;
+body {
+    font-family: "Roboto", sans-serif;
+    // line-height: 1.7;
+    color: $color-font-main;
+    min-height: 100%;
+
+
 
 }

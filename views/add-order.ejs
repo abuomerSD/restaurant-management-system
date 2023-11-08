@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+
+
 <%- include('./partials/head.ejs') %>
 <body>
     <%- include('./partials/nav.ejs') %>
@@ -9,21 +11,86 @@
             
             <% }); %>
         </datalist>
-    <h2>Invoice Number:</h2>
-    <b><p id="invoice-number"><%= lastInvoiceId + 1 %></p></b>
-    <input type="text" name="customer-name" id="customer-name" placeholder="Customer Name">
-    <input type="text" name="meal-name" id="meal-name" placeholder="Enter Meal Name" list="meals-list">
-    <button id="btn-clear-name">clear</button>
-    <input type="text" name="meal-price" id="meal-price" placeholder="Meal Price" disabled>
-    <input type="number" name="meal-qty" id="meal-qty">
-    <button id="btn-add-meal">Add To Invoice</button>
-    <button id="btn-print" hidden>Print</button>
-    <input type="checkbox" name="is-paid" id="is-paid">
-    <label for="is-paid">is Paid?</label>
-    <button id="btn-save-invoice">Save Invoice</button>
-    <button id="btn-new">New Invoice</button>
-    <b><p id="invoice-total">Invoice Total</p></b>
-    <div id="invoice-body"></div>
+    <!-- <h2>Invoice Number:</h2>
+    <b><p id="invoice-number"><%= lastInvoiceId + 1 %></p></b> -->
+    <!-- <input type="text" name="customer-name" id="customer-name" placeholder="Customer Name"> -->
+    <!-- <input type="text" name="meal-name" id="meal-name" placeholder="Enter Meal Name" list="meals-list"> -->
+    <!-- <button id="btn-clear-name">clear</button> -->
+    <!-- <input type="text" name="meal-price" id="meal-price" placeholder="Meal Price" disabled> -->
+    <!-- <input type="number" name="meal-qty" id="meal-qty"> -->
+    <!-- <button id="btn-add-meal">Add To Invoice</button> -->
+    <!-- <button id="btn-print" hidden>Print</button> -->
+    <!-- <input type="checkbox" name="is-paid" id="is-paid"> -->
+    <!-- <label for="is-paid">is Paid?</label> -->
+    <!-- <button id="btn-save-invoice">Save Invoice</button> -->
+    <!-- <button id="btn-new">New Invoice</button> -->
+    <!-- <b><p id="invoice-total">Invoice Total</p></b>
+    <div id="invoice-body"></div> -->
+
+<!-- start styling -->
+<section class="section-meal">
+
+    <div class="row">
+        <div class="meal">
+            <div class="meal__form">
+                <form class="form" method="post">
+                    <div class=" u-margin-bottom-small">
+                        <h2 class="heading-secondry">
+                            add new meal
+                        </h2>
+                    </div>
+                    <h2  >Invoice Number:</h2>
+                    <b ><p class="u-margin-bottom-small header-secondry" id="invoice-number"><%= lastInvoiceId + 1 %></p></b>
+
+                    <div class="form__group">
+                        <input type="text" name="customer-name" id="customer-name" placeholder="Customer Name" class="form__input">
+                        <label for="name" class="form__label">Customer name</label>
+                    </div>
+                    <div class="form__group">
+                        <input type="text" name="meal-name" id="meal-name" placeholder="Enter Meal Name" list="meals-list" class="form__input">
+                        <label for="name" class="form__label">Customer name</label>
+                    </div>
+                    <div class="form__group">
+                        <button id="btn-clear-name" class="btn btn__green">clear</button>
+                    </div>
+                    <div class="form__group">
+                        <input type="text" name="meal-price" id="meal-price" placeholder="Meal Price" class="form__input" disabled>
+                        <label for="name" class="form__label">Meal Price</label>
+                    </div>
+                    <div class="form__group">
+                        <input type="number" name="meal-qty" id="meal-qty" class="form__input">
+                        <label for="name" class="form__label">Meal Quantity</label>
+                    </div>
+                    <div class="form__group">
+                        <button id="btn-add-meal" class="btn btn__green">Add To Invoice</button>
+                    </div>
+                    <div class="form__group">
+                        <button id="btn-print" class="btn btn__green" hidden>Print</button>
+                    </div>
+                    <div class="form__group">
+                        <input type="checkbox" name="is-paid" id="is-paid">
+                        <label for="name" class="form__label">Is Paid?</label>
+                    </div>
+                    <div class="form__group">
+                        <button id="btn-save-invoice" class="btn btn__green">Save Invoice</button>
+                    </div>
+                    <div class="form__group">
+                        <button id="btn-new" class="btn btn__green">New Invoice</button>
+                    </div>
+                    <div class="form__group">
+                        <b><p id="invoice-total">Invoice Total</p></b>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- end styling -->
+
+
+
 
     <script src="/js/add-order.js"></script>
 </body>

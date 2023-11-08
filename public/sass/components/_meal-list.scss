@@ -1,35 +1,63 @@
 .meal-list {
-
-    height: 100%;
-    display: flex;
-    padding: 0 4rem;
-    flex-wrap: wrap;
-
-
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    grid-gap: 8rem;
+    padding: 2rem;
+    margin: 0 15rem;
 }
 
 .meal-card {
-    box-shadow: 0 1rem 4rem rgba(#777, .5);
-
-    width: 20rem;
-    border-radius: 5px;
+    // width: 20%;
     display: flex;
     flex-direction: column;
     padding: 0;
     justify-content: space-between;
-    margin: 2rem;
+    perspective: 150rem;
+    -moz-perspective: 150rem;
+    position: relative;
+    height: 20rem;
 
-
-    &__details {
-
-        padding: 0 1.5rem;
+    &__side {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 20rem;
+        transition: all .8s ease;
+        box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
+        backface-visibility: hidden;
         border-radius: 5px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        overflow: hidden;
+        padding: 1.5rem 3rem;
 
+        &--front {
+            background-color: $color-white;
+            
+
+
+            display: grid;
+            grid-template-columns: 1fr;
+          
+
+        }
+        &--back {
+            background-color: $color-secondry-light;
+            transform: rotateY(180deg);
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: min-content;
+            grid-row-gap: 1rem;
+            justify-items: center;
+            align-content: center;
+        }
+    }
+    &:hover .meal-card__side--front {
+        transform: rotateY(-180deg);
     }
 
+    &:hover .meal-card__side--back {
+        transform: rotateY(0);
+    }
 
     &__name {
 
@@ -41,22 +69,17 @@
         font-size: 2.5rem;
     }
 
-    &__contents {
 
+    &__back {
         padding: 1rem 2rem;
-
-
-
     }
 
     &__action {
         overflow: hidden;
         height: 4rem;
         margin: 0;
-        display: flex;
-        flex-direction: row;
-
-
+        width: 75%;
+        border-radius: 5px;
         a {
             text-decoration: none;
             color: #fff;
@@ -64,16 +87,18 @@
         }
     }
 
-
-
     .button-update {
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: $color-dark-primary;
-        width: 100%;
+        background-color: $color-light-primary;
+
+        // width: 100%;
         text-align: center;
         padding: 1rem auto;
+
+        border: none;
+        color: #fff;
     }
 
     .button-delete {
@@ -81,17 +106,10 @@
         justify-content: center;
         align-items: center;
         background-color: $color-secondry-dark;
-        width: 100%;
         padding: 1rem auto;
+        background-color: $color-dark-primary;
+
+        border: none;
+        color: #fff;
     }
-
-    // span {
-    //     align-self: flex-start;
-    // }
-
-    // span:hover {
-    //     color: $color-dark-primary;
-    //     cursor: pointer;
-
-    // }
 }
