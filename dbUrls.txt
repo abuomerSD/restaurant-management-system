@@ -1,0 +1,3 @@
+DATABASE_URL="postgresql://mohanad:123456@localhost:5432/restdb"
+
+DATABASE_URL="postgresql://asdf:''@localhost:5432/restaurentDb?schema=public"
