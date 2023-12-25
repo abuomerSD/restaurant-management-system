@@ -3,22 +3,122 @@
 <%- include('./partials/head.ejs') %>
 <body>
     <%- include('./partials/nav.ejs') %>
-    <h2>Orders List</h2>
+
+<div class="heading-secondry" style="padding: 2rem;">
+
+
+    <h4>Orders List</h4>
+
+</div>
+
     <% let i = 1 %>
-    <% orders.forEach(order => { %>
+
+
+
+
+
+    <section class="meal-list">
+
+        <% orders.forEach(order=> { %>
+            <div class="meal-card" style="height: 35rem">
+
+                <div class="meal-card__side meal-card__side--front" style="height: 35rem">
+                <div class="meal-card__details">
+                    <div class="meal-card__name">
+                        <p style="display: inline;">order ID: <%= order.id %></p>
+                    </div>
+                    <div class="meal-card__price">
+                        
+            <p style="display: inline;"><h2>customer name:</h2> <%= order.customer_name %></p>
+            <p style="display: inline;"><h2>created at:</h2> <%= order.createdAt %></p>
+            <p style="display: inline;"><h2>is paid:</h2> <%= order.isPaid %></p>
+            <p style="display: inline;"><h2>order total:</h2> <%= order.order_total %></p><br>
+                    </div>
+                
+             
+                <div class="meal-card__action">
+                </div>
+                
+            </div>
+                </div>
+
+            <div class="meal-card__side meal-card__side--back" style="height: 35rem">
+
+
+              
+                    <div class="meal-card__action button-delete">
+                        <!-- <a href="#"> -->
+                            
+                            <button id="btn-delete-<%= i %>" onclick="deleteInvoice('<%= order.id %>')" class="button-delete">Delete Invoice</button>
+                        <!-- </a> -->
+                    </div>
+
+                    <div class="meal-card__action button-update">
+                     
+                            <button id="btn-edit-<%= i %>" onclick="editInvoice('<%= order.id %>')" class="button-update">Edit Invoice</button>
+                       
+                    </div>
+
+
+
+                  
+
+
+                </div>
+                <% i++ %>
+            </div>
+            <% }); %>
+
+
+    </section>
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <% orders.forEach(order => { %>
         <div class="order">
-            <p style="display: inline;">orderId: <%= order.id %></p>
-            <p style="display: inline;">customerName: <%= order.customer_name %></p>
-            <p style="display: inline;">createdAt: <%= order.createdAt %></p>
-            <p style="display: inline;">isPaid: <%= order.isPaid %></p>
-            <p style="display: inline;">orderTotal: <%= order.order_total %></p>
+          
             <br>
-            <!-- <button id="btn-edit-<%= i %>" onclick="editInvoice('<%= order.id %>')">Edit Invoice</button> -->
-            <button id="btn-delete-<%= i %>" onclick="deleteInvoice('<%= order.id %>')">Delete Invoice</button>
-            <p>========================</p>
+          
+           
             <% i++ %>
         </div>
     <% }); %>
     <script src="/js/order-list.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>

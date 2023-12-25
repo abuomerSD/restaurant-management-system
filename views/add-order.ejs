@@ -30,7 +30,7 @@
 <!-- start styling -->
 <section class="section-meal">
 
-    <div class="row">
+    <div class="row" style="margin: 4rem auto;">
         <div class="meal">
             <div class="meal__form">
                 <div class="form" >
@@ -42,44 +42,48 @@
                     <h2  >Invoice Number:</h2>
                     <b ><p class="u-margin-bottom-small header-secondry" id="invoice-number"><%= lastInvoiceId + 1 %></p></b>
 
-                    <div class="form__group">
+                    <div class="form__group" style="margin: .5rem;">
                         <input type="text" name="customer-name" id="customer-name" placeholder="Customer Name" class="form__input">
                         <label for="name" class="form__label">Customer name</label>
                     </div>
-                    <div class="form__group">
+                    <div class="form__group" style="margin: .5rem;">
                         <input type="text" name="meal-name" id="meal-name" placeholder="Enter Meal Name" list="meals-list" class="form__input">
                         <label for="name" class="form__label">Meal name</label>
                     </div>
-                    <div class="form__group">
-                        <button id="btn-clear-name" class="btn btn__green">clear</button>
-                    </div>
-                    <div class="form__group">
+                   
+                      
+                    
+                    <div class="form__group" style="margin: .5rem;">
                         <input type="text" name="meal-price" id="meal-price" placeholder="Meal Price" class="form__input" disabled>
                         <label for="name" class="form__label">Meal Price</label>
                     </div>
-                    <div class="form__group">
+                    <div class="form__group" style="margin: .5rem;">
                         <input type="number" name="meal-qty" id="meal-qty" class="form__input">
                         <label for="name" class="form__label">Meal Quantity</label>
                     </div>
-                    <div class="form__group">
-                        <button id="btn-add-meal" class="btn btn__green">Add To Invoice</button>
-                    </div>
-                    <div class="form__group">
-                        <button id="btn-print" class="btn btn__green" hidden>Print</button>
-                    </div>
-                    <div class="form__group">
-                        <input type="checkbox" name="is-paid" id="is-paid">
-                        <label for="name" class="form__label">Is Paid?</label>
-                    </div>
-                    <div class="form__group">
-                        <button id="btn-save-invoice" class="btn btn__green">Save Invoice</button>
-                    </div>
-                    <div class="form__group">
-                        <button id="btn-new" class="btn btn__green">New Invoice</button>
-                    </div>
-                    <div class="form__group">
+                    
+                    <button id="btn-clear-name" class="btn btn__green" style="margin: .5rem;">clear</button>
+
+                        <button id="btn-add-meal" class="btn btn__green" style="margin: .5rem;">Add To Invoice</button>
+                  
+                   
+                        <button id="btn-print" class="btn btn__green" hidden style="margin: .5rem;">Print</button>
+                    
+                 
+                   
+                        <button id="btn-save-invoice" class="btn btn__green" style="margin: .5rem;">Save Invoice</button>
+                    
+                    
+                        <button id="btn-new" class="btn btn__green" style="margin: .5rem;">New Invoice</button>
+
+                        <div class="form__group" style="margin: .5rem;">
+                            <input type="checkbox" name="is-paid" id="is-paid">
+                            <label for="name" class="form__label">Is Paid?</label>
+                        </div>
+                  
+                   
                         <b><p id="invoice-total">Invoice Total</p></b>
-                    </div>
+                   
               </div>
             </div>
         </div>
