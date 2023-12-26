@@ -381,3 +381,8 @@ h2 {
   .meal__form {
     width: 60%;
     padding: 6rem; }
+
+.invoice-body {
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+  padding: 3rem;
+  min-width: 20rem; }
