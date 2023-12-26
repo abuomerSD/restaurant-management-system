@@ -85,12 +85,24 @@
                 return;
             }
 
-            const card = `<div id="div-${counter}">
+            const card = `<div id="div-${counter}" class="invoice-body__card" style="display:flex">
+
+            <div id="first">
                                 <p  style="display: inline;">${name}</p>
                                 <p  style="display: inline;">${qty}</p>
                                 <p  style="display: inline;">${price}$</p>
                                 <p  style="display: inline;">${total}</p>
-                                <button id="btn-${counter}" onClick="deleteItem('div-${counter}',${total})">Delete</button>
+</first>
+                              <div id="second" > 
+                               
+                                    <button id="btn-${counter}" onClick="deleteItem('div-${counter}',${total})" class="btn btn__green" style="margin:.5rem auto">Delete</button>
+
+                                    <br>
+                          </second>
+
+
+
+                               
                            </div>     `;
 
             invoiceBody.innerHTML += card;
