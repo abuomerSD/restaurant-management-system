@@ -26,21 +26,22 @@
     <!-- <button id="btn-new">New Invoice</button> -->
     <!-- <b><p id="invoice-total">Invoice Total</p></b>
     <div id="invoice-body"></div> -->
-
-<!-- start styling -->
-<section class="section-meal"  style="margin: 0;">
-
-
-
-    <div class="row" style="margin: 3rem auto; display: flex; width: 100%; ">
-        <div class="meal">
-            <div class="meal__form">
-                <div class="form" >
-                    <div class=" u-margin-bottom-small">
-                        <h2 class="heading-secondry">
-                            add new order
-                        </h2>
-                    </div>
+    
+    <!-- start styling -->
+    <section class="section-meal"  style="margin: 0;">
+        
+        
+        
+        <div class="row" style="margin: 3rem auto; display: flex; width: 100%; ">
+            <div class="meal">
+                <div class="meal__form">
+                    <div class="form" >
+                        <div class=" u-margin-bottom-small">
+                            <h2 class="heading-secondry">
+                                add new order
+                            </h2>
+                        </div>
+                        <b><p id="invoice-total">Invoice Total</p></b>
                     <h2  >Invoice Number:</h2>
                     <b ><p class="u-margin-bottom-small header-secondry" id="invoice-number"><%= lastInvoiceId + 1 %></p></b>
 
@@ -82,19 +83,24 @@
                             <input type="checkbox" name="is-paid" id="is-paid">
                             <label for="name" class="form__label">Is Paid?</label>
                         </div>
-                  
+                        
                    
-                        <b><p id="invoice-total">Invoice Total</p></b>
-                   
-              </div>
-            
+                        
+                    </div>
+                    
+                </div>
+                
             </div>
-           
-        </div>
-        <div id="invoice-body" class="invoice-body">
-
-
-
+            <div id="invoice-body" class="invoice-body">
+                
+                <h2>Invoice No: <%= lastInvoiceId + 1 %> </h2>
+                <p>===========================</p>
+                <p style="display: inline; padding-right:20px ;">Meal</p>
+                <p style="display: inline; padding-right:20px ;">qty</p>
+                <p style="display: inline; padding-right:20px ;">price</p>
+                <p style="display: inline;">total</p>
+                <p>===========================</p>
+                
     
 
 

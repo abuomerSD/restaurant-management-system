@@ -88,6 +88,7 @@
             const card = `<div id="div-${counter}" class="invoice-body__card" style="display:flex">
 
             <div id="first">
+                                
                                 <p  style="display: inline;">${name}</p>
                                 <p  style="display: inline;">${qty}</p>
                                 <p  style="display: inline;">${price}$</p>
@@ -113,7 +114,6 @@
 
             invoiceTotal += total;
             txtInvoiceTotal.innerText= "Invoice Total: " + invoiceTotal ;
-
             counter += 1;
         }
 
