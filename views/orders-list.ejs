@@ -48,16 +48,18 @@
               
                     <div class="meal-card__action button-delete">
                         <!-- <a href="#"> -->
-                            
-                            <button id="btn-delete-<%= i %>" onclick="deleteInvoice('<%= order.id %>')" class="button-delete">Delete Invoice</button>
-                        <!-- </a> -->
+                        <span>
+                            <button id="btn-delete-<%= order.id %>"  onclick="deleteInvoice('<%= order.id %>')" class="button-delete">Delete Invoice</button>
+                        </span>
+                            <!-- </a> -->
                     </div>
 
-                    <div class="meal-card__action button-update">
+
+                    <!-- <div class="meal-card__action button-update"> -->
                      
-                            <button id="btn-edit-<%= i %>" onclick="editInvoice('<%= order.id %>')" class="button-update">Edit Invoice</button>
+                            <!-- <button id="btn-edit-<%= i %>" onclick="editInvoice('<%= order.id %>')" class="button-update">Edit Invoice</button> -->
                        
-                    </div>
+                    <!-- </div> -->
 
 
 
