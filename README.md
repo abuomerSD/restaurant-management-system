@@ -1,27 +1,14 @@
-This is Restaurent Management System
+This is a simple Restaurant Management Website to Control Bills and Meals Prices and names .
+the technologies i have used :
 
-Meal:
+- Javascript
+- Typescript
+- Express js
+- Prisma ORM
+- PostgreSQL
 
-- id (hidden , it's only for development use)
-- name
-- price
-- quantity
-
-order:
-
-- id
-- customer name
-- created at
-- Meals List
-- isPaid
-
-order Details:
-
-- meal name
-- meal price
-- qty
-- total price for row
-- total price for the order
+Video Link:
+https://www.youtube.com/watch?v=O-QALMUxSt4
 
 ### 🛠 &nbsp;Technology Used in this project
 
