@@ -43,6 +43,11 @@ app.get('/', (req, res) => {
     res.render('index', {title:'Restaurent Management System'})
 })
 
+// handle 404 pages
+app.use((req, res) => {
+    res.send('404 Page Not Found');
+})
+
 // listening to requests
 app.listen(port, ()=> {
     console.log(`Server is Listening to Requests at Port ${port}`);

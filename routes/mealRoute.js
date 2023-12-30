@@ -20,6 +20,10 @@ router.get('/:id', controller.getSingleMeal);
 
 router.post('/get-single-meal', controller.getMealJson)
 
+router.use((req, res) => {
+    res.send('404 Page Not Found');
+})
+
 
 
 module.exports = router;
